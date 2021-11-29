@@ -1,9 +1,11 @@
 import time, os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
 
- driver_path = os.getcwd()+"//chromedriver.exe"
- driver = webdriver.Chrome()
+s = Service(f'{os.getcwd()}/chromedriver.exe')
+driver = webdriver.Chrome(service=s)
+
 try:
     driver.get('https://jksb.v.zzu.edu.cn/')
     time.sleep(3)
