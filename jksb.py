@@ -1,16 +1,21 @@
-import time
+import time, os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 driver = webdriver.Chrome()
 try:
     driver.get('https://jksb.v.zzu.edu.cn/')
+
+    print("读取用户名密码")
+    uid = os.environ['ID']
+    password = os.environ['PASSWORD']
+
     driver.switch_to.frame('my_toprr')                                                                #切换iframe
     time.sleep(3)
     driver.find_element(
-        "xpath", "/html/body/form/div/div[2]/div[2]/div[3]/input").send_keys('你的学号')          # 找到账号框并输入账号
+        "xpath", "/html/body/form/div/div[2]/div[2]/div[3]/input").send_keys(uid)          # 找到账号框并输入账号
     print("成功输入用户名")
     driver.find_element(
-        By.XPATH, "/html/body/form/div/div[2]/div[3]/div[3]/input").send_keys('你的密码')             # 找到密码框并输入密码
+        By.XPATH, "/html/body/form/div/div[2]/div[3]/div[3]/input").send_keys(password)             # 找到密码框并输入密码
     print("成功输入密码")
     driver.find_element(
         By.XPATH, "/html/body/form/div/div[2]/div[5]/div/input").click()                              # 找到“进入健康上报平台”按钮并点击
