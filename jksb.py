@@ -1,16 +1,19 @@
 import time, os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-driver = webdriver.Chrome()
+
+ driver_path = os.getcwd()+"//chromedriver.exe"
+ driver = webdriver.Chrome()
 try:
     driver.get('https://jksb.v.zzu.edu.cn/')
+    time.sleep(3)
 
     print("读取用户名密码")
     uid = os.environ['ID']
     password = os.environ['PASSWORD']
 
     driver.switch_to.frame('my_toprr')                                                                #切换iframe
-    time.sleep(3)
+
     driver.find_element(
         "xpath", "/html/body/form/div/div[2]/div[2]/div[3]/input").send_keys(uid)          # 找到账号框并输入账号
     print("成功输入用户名")
